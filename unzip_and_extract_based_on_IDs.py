@@ -10,7 +10,7 @@ folder_in = "/work/wikidata/"
 folder_out = "/work/wikidata/extracted_files/"
 
 # List of page IDs to process
-pages = [264, 151582, 11015753]
+pages = [264, 198332, 35458904]
 
 
 """

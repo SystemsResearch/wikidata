@@ -20,6 +20,8 @@ File `unzip.py` is a simple example of how you can automate this. It iterates ov
 
 Quick notes:
 
+- This takes about 2-3 minutes per file.
+
 - You could do the same thing in a shell script, but many of you are probably more comfortable with Python.
 
 - Each XML file is typically over 30GB. 
@@ -35,6 +37,8 @@ For your project, you may be working with a selection of some specific pages, ra
 File `unzip_and_extract_based_on_IDs.py`  is an example of how to do this. For each page in a list of IDs, it identifies which archive contains this page (using the fact that each filename contains the IDs of the first and last page of the range contained in the file), and then extracts from that XML only the content for the page of interest and saves it to a new XML file.
 
 Quick notes:
+
+- This should take roughly 3-10 minutes per page (based on limited testing), depending on where the page is located in the file.
 
 - To find the ID for a given page, an easy solution is to use the Wikipedia API.
 
@@ -55,6 +59,28 @@ Quick notes:
   - From this, you know that the page ID is 198332.
 
 - If you want to do this for a lot of them, you may want to automate these steps.
+
+### Extracting everything but the text
+
+A number of you are working on questions around temporal dynamics (when edits are made, how frequently pages are updated, etc.) or user behaviour (who contributes to which pages, etc.). 
+
+This type of questions does not require the text of each page you analyse. However, that text takes most of the disk space used by the XML files, as you have the complete text for every revision of every page.
+
+You will need to extract just the features that are relevant to your research questions.
+
+File `unzip_and_extract_all_but_text.py` is an example where we iterate over a list of files, unzip them, and extract everything but the text. For the first file in the data dump, the resulting file is 223MB, compared to 35GB if we keep the text.
+
+It means you can then use tools such as `ElementTree` or `BeautifulSoup` to parse the data (which would not be practical with the intial files).
+
+Quick notes:
+
+- This should take about 3-10 minutes per file (based on limited testing).
+  
+  - Files with higher page IDs contain pages with fewer revisions (as the pages are more recent), which are each processed faster, but they also contain more pages.
+
+- Do not run this on the entire collection unless you want to work with all pages.
+
+- You can combine this example with parts of the previous one, if you want to extract the data for specific pages rather than whole files.
 
 ## Submitting jobs
 

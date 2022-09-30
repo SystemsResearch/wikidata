@@ -82,6 +82,20 @@ Quick notes:
 
 - You can combine this example with parts of the previous one, if you want to extract the data for specific pages rather than whole files.
 
+### Extracting from XML to CSV
+
+Even after removing the text as described above, the files still cannot be analysed as in, and still contain a lot of unnecessary elements. For your analysis, you will only need the values (e.g., usernames, timestamps), not the file structure.
+
+File `xml_process_example.py` is an example of how to extract that information, by parsing the XML files using `Beautiful Soup`.
+
+Quick notes:
+
+- In my limited tests, it took 15 minutes to process two files.
+
+- If you are running on HPC, make sure your submission is loaded the appropriate modules for `lxml` and `BeautifulSoup`. Please look at `xml_process.sh` for an example of how to do that.
+
+- As before, you can combine this example with some strategies discussed earlier, for instance of you only want to extract data for some pages.
+
 ## Submitting jobs
 
 All your data extraction needs to be submitted as HPC jobs using `qsub`. You **should not** run your programs directly from the command line.
